@@ -4,7 +4,7 @@ Screen:
     MDRaisedButton:
         id: calc_extrusion
         text: "Calculate Extrusion"
-        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
         on_release: app.calc_extrusion()
 
     MDRaisedButton:
@@ -18,8 +18,9 @@ Screen:
         hint_text: "Enter current rotation distance"
         helper_text: "This is the previous rotation distance"
         helper_text_mode: "on_focus"
+        required: True
         pos_hint: {"center_x": .5, "center_y": .9}
-        font_size: 22
+        font_size: 30
         size_hint_x: .8
 
     MDTextField:
@@ -27,8 +28,9 @@ Screen:
         hint_text: "Enter extruded filament"
         helper_text: "Measurent of filament from original marks befor and after"
         helper_text_mode: "on_focus"
+        required: True
         pos_hint: {"center_x": .5, "center_y": .7}
-        font_size: 22
+        font_size: 30
         size_hint_x: .8
 
     MDTextField:
@@ -36,8 +38,9 @@ Screen:
         hint_text: "Enter current flow"
         helper_text: "This is the previous flow percentage"
         helper_text_mode: "on_focus"
+        required: True
         pos_hint: {"center_x": .5, "center_y": .4}
-        font_size: 22
+        font_size: 30
         size_hint_x: .8
 
     MDTextField:
@@ -45,6 +48,7 @@ Screen:
         hint_text: "Enter current measured wall"
         helper_text: "This is the current measurement needing adjustment"
         helper_text_mode: "on_focus"
+        required: True
         pos_hint: {"center_x": .5, "center_y": .25}
-        font_size: 22
+        font_size: 30
         size_hint_x: .8
