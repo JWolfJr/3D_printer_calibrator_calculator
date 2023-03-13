@@ -2,6 +2,17 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
+from kivymd.uix.navigationdrawer import MDNavigationDrawer
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.scrollview import MDScrollView
+#from kivy.properties import ObjectProperty
+
+
+
+class ContentNavigationDrawer(MDBoxLayout):
+    pass
+    # screen_mangager = ObjectProperty()
+    # nav_drawer = ObjectProperty()
 
 
 class MainApp(MDApp):
@@ -13,7 +24,7 @@ class MainApp(MDApp):
         self.theme_cls.primary_palette = "Orange"
         self.theme_cls.accent_palette = "Blue"
 
-        return Builder.load_file('main.kv')
+        return Builder.load_file('main3.kv')
 
     #Calculate rotation_distance as: rotation_distance = <previous_rotation_distance> * <actual_extrude_distance> / <requested_extrude_distance> Round the new rotation_distance to three decimal places.
     def calc_extrusion(self):
