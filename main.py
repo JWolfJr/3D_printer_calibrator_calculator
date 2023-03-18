@@ -26,7 +26,7 @@ class MainApp(MDApp):
 
         return Builder.load_file('app.kv')
 
-    #Calculate rotation_distance as: rotation_distance = <previous_rotation_distance> * <actual_extrude_distance> / <requested_extrude_distance> Round the new rotation_distance to three decimal places.
+    # Calculate rotation_distance as: rotation_distance = <previous_rotation_distance> * <actual_extrude_distance> / <requested_extrude_distance> Round the new rotation_distance to three decimal places.
     def calc_extrusion(self):
         prev_num = float(self.root.ids.prev_rotation.text)
         ext_dist = float(self.root.ids.extrude_dist.text)

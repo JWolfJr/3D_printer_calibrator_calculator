@@ -1,18 +1,19 @@
 <ContentNavigationDrawer>
+    ScrollView:
 
-    MDList:
+        MDList:
 
-        OneLineListItem:
-            text: "Extrusion"
-            on_press:
-                root.nav_drawer.set_state("close")
-                root.screen_manager.current = "extrusion"
+            OneLineListItem:
+                text: "Extrusion"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "extrusion"
 
-        OneLineListItem:
-            text: "Flow"
-            on_press:
-                root.nav_drawer.set_state("close")
-                root.screen_manager.current = "flow"
+            OneLineListItem:
+                text: "Flow"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "flow"
 
 
 MDScreen:
@@ -30,16 +31,35 @@ MDScreen:
             id: screen_manager
 
             MDScreen:
+                # MDBoxLayout:
+                #     orientation: "vertical"
+                    
                 MDLabel:
                     font_style: "H3"
                     text: "Welcome to your Hot End Calculator"
                     theme_text_color: "Custom"
                     text_color: .077,1,1,1
                     halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDLabel:
+                    font_style: "H4"
+                    text: "Pick an option from the side menu"
+                    theme_text_color: "Secondary"
+                    halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .4}
                     
 
             MDScreen:
                 name: "extrusion"
+
+                MDLabel:
+                    font_style: "H3"
+                    text: "Calculate Extrusion"
+                    theme_text_color: "Custom"
+                    text_color: 1, 163/255, 26/255, 1
+                    halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .8}
 
                 MDTextField:
                     id: extrude_dist
@@ -71,6 +91,14 @@ MDScreen:
             MDScreen:
                 name: "flow"
 
+                MDLabel:
+                    font_style: "H3"
+                    text: "Calculate Flow"
+                    theme_text_color: "Custom"
+                    text_color: 1, 163/255, 26/255, 1
+                    halign: "center"
+                    pos_hint: {"center_x": .5, "center_y": .8}
+
                 MDTextField:
                     id: prev_flow_wall
                     hint_text: "Enter current flow"
@@ -101,25 +129,28 @@ MDScreen:
             id: nav_drawer
             type: "modal"
             orientation: 'vertical'
-            #padding: 56, 56, 12, 16
+            padding: 16, 10, 10, 16
             radius: (0, 16, 16, 0)
             
 
-            MDNavigationDrawerMenu:
+            #MDNavigationDrawerMenu:
 
-                MDNavigationDrawerHeader:
-                    title: "Calculator Selection"
-                    title_color: "#4dffff"
-                    text: "select one"
-                    spacing: "4dp"
-                    padding: "12dp", "32dp", "12dp", "12dp"
-                    Image:
-                        source: "3DNozzle_app.png"
-                        size_hint: .6, .6
-                    
+            MDNavigationDrawerHeader:
+                title: "Calculator Selection"
+                title_color: "#4dffff"
+                text: "select one"
+                spacing: "4dp"
+                padding: "12dp", "32dp", "12dp", "12dp"
+                #padding: 12,56,8,160
+                Image:
+                    source: "3DNozzle_app.png"
+                    size_hint: .6, .6
+                
+                
 
             ContentNavigationDrawer:
                 screen_manager: screen_manager
                 nav_drawer: nav_drawer
+                padding: 6, 48, 6, 10
 
             
