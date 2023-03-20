@@ -58,6 +58,14 @@ class MainApp(MDApp):
         )
         self.dialog.open()
 
+    def clear_flow_field_btn(self):
+        self.root.ids.prev_flow_wall.text = ""
+        self.root.ids.flow_wall.text = ""
+
+    def clear_extrusion_field_btn(self):
+        self.root.ids.prev_rotation.text = ""
+        self.root.ids.extrude_dist.text = ""
+
     def close_dialog(self, obj):
         self.dialog.dismiss()
 

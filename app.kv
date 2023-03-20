@@ -4,6 +4,12 @@
         MDList:
 
             OneLineListItem:
+                text: "Home Screen"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "home"
+
+            OneLineListItem:
                 text: "Extrusion"
                 on_press:
                     root.nav_drawer.set_state("close")
@@ -24,6 +30,7 @@ MDScreen:
         title: "3-D Hot End Calculator"
         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
         right_action_items: [["exit-to-app", lambda x: app.stop()]]
+        halign: "center"
 
     MDNavigationLayout:
 
@@ -31,6 +38,7 @@ MDScreen:
             id: screen_manager
 
             MDScreen:
+                name: "home"
                 # MDBoxLayout:
                 #     orientation: "vertical"
                     
@@ -41,7 +49,7 @@ MDScreen:
                     #text_color: .077,1,1,1
                     text_color: app.theme_cls.primary_color
                     halign: "center"
-                    pos_hint: {"center_x": .5, "center_y": .5}
+                    pos_hint: {"center_x": .5, "center_y": .55}
 
                 MDLabel:
                     font_style: "H4"
@@ -90,6 +98,15 @@ MDScreen:
                     pos_hint: {"center_x": 0.5, "center_y": 0.2}
                     on_release: app.calc_extrusion()
 
+                MDRectangleFlatButton:
+                    id: clear_field
+                    text: "Clear"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: "white"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                    on_release: app.clear_extrusion_field_btn()
+
 
             MDScreen:
                 name: "flow"
@@ -128,6 +145,14 @@ MDScreen:
                     text: "Calculate Flow"
                     pos_hint: {"center_x": 0.5, "center_y": 0.2}
                     on_release: app.calc_flow()
+
+                MDRectangleFlatButton:
+                    id: clear_field
+                    text: "Clear"
+                    text_color: "white"
+                    line_color: "white"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.1}
+                    on_release: app.clear_flow_field_btn()
 
         MDNavigationDrawer:
             id: nav_drawer
