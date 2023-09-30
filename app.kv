@@ -13,6 +13,7 @@
                 text: "Extrusion"
                 on_press:
                     root.nav_drawer.set_state("close")
+                    #root.screen_manager.transition.FallOutTransition()
                     root.screen_manager.current = "extrusion"
 
             OneLineListItem:
@@ -36,6 +37,7 @@ MDScreen:
 
         MDScreenManager:
             id: screen_manager
+            #transition: MDFadeSlideTransition(duration=1)
 
             MDScreen:
                 name: "home"
@@ -58,6 +60,14 @@ MDScreen:
                     text_color: app.theme_cls.primary_light
                     halign: "center"
                     pos_hint: {"center_x": .5, "center_y": .4}
+
+                # FloatLayout:
+                #     Image:
+                #         pos_hint: {"center_x": .5, "center_y": .7}
+                #         source: "assets/back2future.gif"
+                #         allow_stretch: True
+                #         anim_delay: .1
+                #         anim_reset: True
                     
 
             MDScreen:
@@ -75,7 +85,7 @@ MDScreen:
                 MDTextField:
                     id: extrude_dist
                     hint_text: "Enter extruded filament"
-                    helper_text: "Measurent of filament from original marks befor and after"
+                    helper_text: "Measurent of filament from original marks before minus after"
                     helper_text_mode: "on_focus"
                     required: True
                     pos_hint: {"center_x": .5, "center_y": .4}
@@ -91,12 +101,27 @@ MDScreen:
                     pos_hint: {"center_x": .5, "center_y": .6}
                     font_size: 30
                     size_hint_x: .8
+                    #right_action_items: [["magnify", lambda x: callback(x)]]
+
+                
+
+                MDIconButton:
+                    icon: "magnify"
+                    pos_hint: {"center_x": .85, "center_y": .4}
+                    pos: prev_rotation.width - self.width + dp(8), 0
+                    theme_text_color: "Hint"
+                    on_release: 
+                        root.ids.screen_manager.current = "extrusion_gif"
+                        #app.callback()
+                        #print("magnify_released")
+                        
 
                 MDRectangleFlatButton:
                     id: calc_extrusion
                     text: "Calculate Extrusion"
                     pos_hint: {"center_x": 0.5, "center_y": 0.2}
-                    on_release: app.calc_extrusion()
+                    on_release: 
+                        app.calc_extrusion()
 
                 MDRectangleFlatButton:
                     id: clear_field
@@ -105,7 +130,33 @@ MDScreen:
                     text_color: "white"
                     line_color: "white"
                     pos_hint: {"center_x": 0.5, "center_y": 0.1}
-                    on_release: app.clear_extrusion_field_btn()
+                    on_release: 
+                        app.clear_extrusion_field_btn()
+
+            MDScreen:
+                name: "extrusion_gif"
+                #id: extrusion_gif_screen
+
+                FloatLayout:
+                    Image:
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        #source: "assets/back2future.gif"
+                        source: "assets/back2future.gif"
+                        allow_stretch: True
+                        anim_delay: .1
+                        anim_reset: True
+
+
+                MDRectangleFlatButton:
+                    text: "Back"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: "white"
+                    pos_hint: {"center_x": .5, "center_y": .2}
+                    on_release: 
+                        #root.screen_manager.transition.MDFadeSlideTransition
+                        root.ids.screen_manager.current = "extrusion"
+                    
 
 
             MDScreen:
@@ -140,11 +191,22 @@ MDScreen:
                     font_size: 30
                     size_hint_x: .8
 
+                MDIconButton:
+                    icon: "magnify"
+                    pos_hint: {"center_x": .85, "center_y": .4}
+                    pos: flow_wall.width - self.width + dp(8), 0
+                    theme_text_color: "Hint"
+                    on_release: 
+                        root.ids.screen_manager.current = "flow_gif"
+                        #print("magnify_released")
+                    
+
                 MDRectangleFlatButton:
                     id: calc_flow
                     text: "Calculate Flow"
                     pos_hint: {"center_x": 0.5, "center_y": 0.2}
-                    on_release: app.calc_flow()
+                    on_release: 
+                        app.calc_flow()
 
                 MDRectangleFlatButton:
                     id: clear_field
@@ -153,7 +215,30 @@ MDScreen:
                     text_color: "white"
                     line_color: "white"
                     pos_hint: {"center_x": 0.5, "center_y": 0.1}
-                    on_release: app.clear_flow_field_btn()
+                    on_release: 
+                        app.clear_flow_field_btn()
+
+            MDScreen:
+                name: "flow_gif"
+                id: flow_gif_screen
+                
+                FloatLayout:
+                    Image:
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        source: "assets/jacks_supercomp.jpg"
+                        #anim_delay: -1
+                        allow_stretch: True
+                        anim_delay: .1
+                        anim_reset: True
+
+                MDRectangleFlatButton:
+                    text: "Back"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: "white"
+                    pos_hint: {"center_x": .5, "center_y": .2}
+                    on_release: 
+                        root.ids.screen_manager.current = "flow"
 
         MDNavigationDrawer:
             id: nav_drawer
@@ -173,7 +258,8 @@ MDScreen:
                 padding: "12dp", "32dp", "12dp", "12dp"
                 #padding: 12,56,8,160
                 Image:
-                    source: "3DNozzle_app.png"
+                    source: "assets/3DNozzle_app.png"
+                    #source: "assets/back2future.gif"
                     #size_hint: .6, .6
                     size_hint: None, None
                     size: "90dp", "90dp"
@@ -183,5 +269,5 @@ MDScreen:
                 screen_manager: screen_manager
                 nav_drawer: nav_drawer
                 padding: 6, 48, 6, 10
-
+                
             

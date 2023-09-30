@@ -1,5 +1,6 @@
 from kivymd.app import MDApp
 from kivy.lang import Builder
+from kivy.core.window import Window
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
 from kivymd.uix.navigationdrawer import MDNavigationDrawer
@@ -7,12 +8,14 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.scrollview import MDScrollView
 from kivy.properties import ObjectProperty
 
+# Create window size for this is a mobile app
+Window.size = (900, 1720)
 
 
 class ContentNavigationDrawer(MDBoxLayout):
-    pass
-    # screen_mangager = ObjectProperty()
-    # nav_drawer = ObjectProperty()
+    #pass
+    screen_mangager = ObjectProperty()
+    nav_drawer = ObjectProperty()
 
 
 class MainApp(MDApp):
@@ -34,7 +37,7 @@ class MainApp(MDApp):
         
         self.dialog = MDDialog(
             title="New Rotation!",
-            text="Rotate this beeotch! Enter " + str(round(new_rot, 3)) + " in your printer.cfg",
+            text="Rotate this beeotch! Enter " + str(round(new_rot, 3)) + " in your printer.cfg file",
             radius=[20,7,20,7],
             auto_dismiss=False,
             buttons=[MDRaisedButton(text="Close",
@@ -59,12 +62,18 @@ class MainApp(MDApp):
         self.dialog.open()
 
     def clear_flow_field_btn(self):
-        self.root.ids.prev_flow_wall.text = ""
+        self.root.ids.prev_flow_wall.text = ""      
         self.root.ids.flow_wall.text = ""
 
     def clear_extrusion_field_btn(self):
         self.root.ids.prev_rotation.text = ""
         self.root.ids.extrude_dist.text = ""
+
+    # def callback(self, *args):
+    #     self.root.ids.screen_manager.current = "extrusion_gif"
+
+    # def show_extrusion_gif(self):
+    #     self.root.ids.get_screen(extrusion_gif_screen)
 
     def close_dialog(self, obj):
         self.dialog.dismiss()
